@@ -10,7 +10,7 @@ interface RecommendationPanelProps {
 }
 
 export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ currentData }) => {
-  if (!currentData) return <div className="text-slate-500 text-center p-4">Waiting for data...</div>;
+  if (!currentData) return <div className="text-slate-500 text-center p-4">等待数据...</div>;
 
   const { d, h, u } = currentData;
   const recommendations: { type: 'warning' | 'success' | 'info', message: string, detail: string }[] = [];
@@ -19,44 +19,44 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ curren
   if (d > 110.2) {
     recommendations.push({
       type: 'warning',
-      message: 'Decrease Vacuum / Negative Pressure',
-      detail: 'Outer Diameter (d) is too large. Prioritize single variable adjustment.'
+      message: '降低真空/负压',
+      detail: '外径 (d) 过大。优先进行单变量调整。'
     });
   } else if (d < 109.8) {
     recommendations.push({
       type: 'warning',
-      message: 'Increase Vacuum / Negative Pressure',
-      detail: 'Outer Diameter (d) is too small. Prioritize single variable adjustment.'
+      message: '增加真空/负压',
+      detail: '外径 (d) 过小。优先进行单变量调整。'
     });
   }
 
   if (h > 10.05) {
     recommendations.push({
       type: 'warning',
-      message: 'Increase Traction Speed',
-      detail: 'Wall Thickness (h) is too thick. 10s later, slightly increase vacuum to compensate diameter.'
+      message: '增加牵引速度',
+      detail: '壁厚 (h) 过厚。10秒后，稍微增加真空以补偿直径。'
     });
   } else if (h < 9.95) {
     recommendations.push({
       type: 'warning',
-      message: 'Decrease Traction Speed',
-      detail: 'Wall Thickness (h) is too thin. 10s later, slightly decrease vacuum to compensate diameter.'
+      message: '降低牵引速度',
+      detail: '壁厚 (h) 过薄。10秒后，稍微降低真空以补偿直径。'
     });
   }
 
   if (u > 0.3) {
     recommendations.push({
       type: 'warning',
-      message: 'Check Vacuum Stability',
-      detail: 'Unroundness (u) is high. Alert: Clean Sizing Sleeve.'
+      message: '检查真空稳定性',
+      detail: '不圆度 (u) 过高。警报：清洁定径套。'
     });
   }
 
   if (recommendations.length === 0) {
     recommendations.push({
       type: 'success',
-      message: 'System Stable',
-      detail: 'All parameters are within control limits.'
+      message: '系统稳定',
+      detail: '所有参数均在控制限内。'
     });
   }
 

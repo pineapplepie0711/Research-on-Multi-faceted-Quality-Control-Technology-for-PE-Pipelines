@@ -32,7 +32,7 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
     <div className="w-full h-full flex flex-col gap-2">
       {/* Figure 7: Main Trend */}
       <div className="flex-[2] min-h-0 relative border-b border-cyan-500/20 pb-1">
-        <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">Trend</div>
+        <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">趋势</div>
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
             <defs>
@@ -54,7 +54,7 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
       <div className="flex-1 min-h-0 flex gap-2">
         {/* Figure 8: Distribution */}
         <div className="flex-1 min-h-0 relative border-r border-cyan-500/20 pr-1">
-           <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">Dist</div>
+           <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">分布</div>
            <ResponsiveContainer width="100%" height="100%">
              <BarChart data={histogramData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
                <XAxis dataKey="name" tick={{ fontSize: 8 }} interval={1} />
@@ -66,7 +66,7 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
 
         {/* Figure 9: Contribution */}
         <div className="flex-1 min-h-0 relative">
-           <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">Contrib</div>
+           <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">贡献</div>
            <ResponsiveContainer width="100%" height="100%">
              <BarChart data={contributions} layout="vertical" margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                <XAxis type="number" hide />

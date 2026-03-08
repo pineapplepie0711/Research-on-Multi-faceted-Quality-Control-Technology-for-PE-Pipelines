@@ -80,12 +80,12 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
 
   // Determine dominant risk
   const maxVal = Math.max(v1, v2, v3, v4);
-  let finalRisk = 'Safe';
+  let finalRisk = '安全';
   let colorClass = 'text-emerald-400';
   
-  if (v4 === maxVal) { finalRisk = 'Failure'; colorClass = 'text-red-600'; }
-  else if (v3 === maxVal) { finalRisk = 'Critical'; colorClass = 'text-red-500'; }
-  else if (v2 === maxVal) { finalRisk = 'Warning'; colorClass = 'text-yellow-400'; }
+  if (v4 === maxVal) { finalRisk = '故障'; colorClass = 'text-red-600'; }
+  else if (v3 === maxVal) { finalRisk = '严重'; colorClass = 'text-red-500'; }
+  else if (v2 === maxVal) { finalRisk = '警告'; colorClass = 'text-yellow-400'; }
 
   return (
     <div className={cn("flex flex-col items-center justify-center p-1 w-full h-full")}>
@@ -128,7 +128,7 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
       </div>
 
       <div className="text-[10px] uppercase tracking-widest opacity-80 font-semibold text-center leading-tight mt-0">
-        VW-GCM Evaluation
+        VW-GCM 评估
       </div>
     </div>
   );

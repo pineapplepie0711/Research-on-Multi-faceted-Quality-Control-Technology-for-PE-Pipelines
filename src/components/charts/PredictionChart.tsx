@@ -11,9 +11,9 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
   const [selectedMetric, setSelectedMetric] = useState<MetricType>('d');
 
   const metricLabels = {
-    d: 'Diameter',
-    h: 'Thickness',
-    u: 'Unroundness'
+    d: '直径',
+    h: '壁厚',
+    u: '不圆度'
   };
 
   const metricColors = {
@@ -44,7 +44,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
       {/* Top Chart: Fusion Visualization */}
       <div className="flex-1 min-h-0 relative">
         <div className="absolute top-0 left-0 text-[10px] text-slate-400 font-mono z-10">
-          Fusion Process ({metricLabels[selectedMetric]})
+          融合过程 ({metricLabels[selectedMetric]})
         </div>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 20, right: 5, left: -20, bottom: 0 }}>
@@ -61,7 +61,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             <Line 
               type="monotone" 
               dataKey={`mtcn.${selectedMetric}`} 
-              name="Local (MTCN)" 
+              name="局部 (MTCN)" 
               stroke="#64748b" 
               strokeWidth={1} 
               dot={false} 
@@ -70,7 +70,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             <Line 
               type="monotone" 
               dataKey={`transformer.${selectedMetric}`} 
-              name="Global (Trans)" 
+              name="全局 (Trans)" 
               stroke="#f59e0b" 
               strokeWidth={1} 
               dot={false} 
@@ -81,7 +81,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             <Line 
               type="monotone" 
               dataKey={`fusedPrediction.${selectedMetric}`} 
-              name="Fused (DQN)" 
+              name="融合 (DQN)" 
               stroke="#3b82f6" 
               strokeWidth={2} 
               dot={false} 
@@ -91,7 +91,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             <Line 
               type="monotone" 
               dataKey={selectedMetric} 
-              name="Actual" 
+              name="实际值" 
               stroke={metricColors[selectedMetric]} 
               strokeWidth={1} 
               dot={{r:1}} 
@@ -104,7 +104,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
       {/* Bottom Chart: DQN Weight Lambda */}
       <div className="h-1/3 min-h-0 relative border-t border-slate-800 pt-1">
         <div className="absolute top-1 left-0 text-[10px] text-slate-400 font-mono z-10">
-          DQN Weight λ ({metricLabels[selectedMetric]})
+          DQN 权重 λ ({metricLabels[selectedMetric]})
         </div>
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 15, right: 5, left: -20, bottom: 0 }}>
@@ -114,7 +114,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             <Tooltip 
               contentStyle={{ backgroundColor: '#0f172a', borderColor: '#8b5cf6', color: '#cbd5e1', fontSize: '10px' }}
               labelStyle={{ display: 'none' }}
-              formatter={(value: number) => [value.toFixed(3), 'λ (Weight)']}
+              formatter={(value: number) => [value.toFixed(3), 'λ (权重)']}
             />
             <Area 
               type="step" 

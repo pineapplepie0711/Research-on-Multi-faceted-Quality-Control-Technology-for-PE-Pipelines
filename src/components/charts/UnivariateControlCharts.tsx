@@ -28,13 +28,13 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
               contentStyle={{ backgroundColor: '#0f172a', borderColor: color, color: '#cbd5e1', fontSize: '10px', padding: '4px' }}
               itemStyle={{ color: '#cbd5e1' }}
               labelStyle={{ display: 'none' }}
-              formatter={(value: any, name: string) => [value, name === `wsrSra.${dataKey}` ? 'Z-Score' : (name === 'wsrSra.limit' ? 'UCL' : 'LCL')]}
+              formatter={(value: any, name: string) => [value, name === `wsrSra.${dataKey}` ? 'Z-分数' : (name === 'wsrSra.limit' ? '控制上限' : '控制下限')]}
             />
             <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" />
             
             {/* Dynamic Control Limits (Step) */}
             <Line type="step" dataKey="wsrSra.limit" stroke="#f43f5e" strokeDasharray="3 3" dot={false} strokeWidth={1} isAnimationActive={false} />
-            <Line type="step" dataKey={(d) => -d.wsrSra.limit} name="LCL" stroke="#f43f5e" strokeDasharray="3 3" dot={false} strokeWidth={1} isAnimationActive={false} />
+            <Line type="step" dataKey={(d) => -d.wsrSra.limit} name="控制下限" stroke="#f43f5e" strokeDasharray="3 3" dot={false} strokeWidth={1} isAnimationActive={false} />
             
             {/* Main Z-Score Line */}
             <Line type="monotone" dataKey={`wsrSra.${dataKey}`} stroke={color} strokeWidth={1.5} dot={false} isAnimationActive={false} />
