@@ -88,12 +88,12 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
   else if (v2 === maxVal) { finalRisk = 'Warning'; colorClass = 'text-yellow-400'; }
 
   return (
-    <div className={cn("flex flex-col items-center justify-center p-2 w-full h-full")}>
-      <div className={`text-xl font-bold tracking-tighter mb-2 ${colorClass}`}>
+    <div className={cn("flex flex-col items-center justify-center p-1 w-full h-full")}>
+      <div className={`text-xl font-bold tracking-tighter mb-1 ${colorClass}`}>
         {finalRisk.toUpperCase()}
       </div>
       
-      <div className="w-full grid grid-cols-4 gap-1 h-16 items-end mb-1 px-2">
+      <div className="w-full grid grid-cols-4 gap-1 h-10 items-end mb-1 px-2">
         <div className="flex flex-col items-center gap-1 h-full justify-end">
            <div className="w-full bg-emerald-500/20 relative rounded-sm overflow-hidden flex items-end h-full">
               <div className="w-full bg-emerald-500 transition-all duration-500" style={{ height: `${v1 * 100}%` }}></div>
@@ -127,7 +127,7 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
         <div className="text-center">V4</div>
       </div>
 
-      <div className="text-[10px] uppercase tracking-widest opacity-80 font-semibold text-center leading-tight mt-1">
+      <div className="text-[10px] uppercase tracking-widest opacity-80 font-semibold text-center leading-tight mt-0">
         VW-GCM Evaluation
       </div>
     </div>

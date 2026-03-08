@@ -15,10 +15,10 @@ const SingleChart = ({ data, dataKey, color, title, target, unit, domain }: { da
     </div>
     <div className="flex-1 min-h-0">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 15, right: 10, left: 0, bottom: 0 }}>
+        <LineChart data={data} margin={{ top: 15, right: 10, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
           <XAxis dataKey="time" hide />
-          <YAxis stroke={color} tick={{ fill: color, fontSize: 10 }} domain={domain || ['auto', 'auto']} width={35} />
+          <YAxis stroke={color} tick={{ fill: color, fontSize: 10 }} domain={domain || ['auto', 'auto']} width={45} />
           <Tooltip 
             contentStyle={{ backgroundColor: '#0f172a', borderColor: color, color: '#cbd5e1', fontSize: '11px', padding: '4px' }}
             itemStyle={{ color: '#cbd5e1' }}
