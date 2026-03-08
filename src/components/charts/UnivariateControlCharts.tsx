@@ -23,16 +23,20 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
             <XAxis dataKey="time" hide />
             {/* Symmetric domain around 0 based on limit */}
-            <YAxis hide domain={[-limit * 1.5, limit * 1.5]} />
+            <YAxis hide domain={['dataMin', 'dataMax']} />
             <Tooltip 
               contentStyle={{ backgroundColor: '#0f172a', borderColor: color, color: '#cbd5e1', fontSize: '10px', padding: '4px' }}
               itemStyle={{ color: '#cbd5e1' }}
               labelStyle={{ display: 'none' }}
-              formatter={(value: any) => [value, 'Z-Score']}
+              formatter={(value: any, name: string) => [value, name === `wsrSra.${dataKey}` ? 'Z-Score' : (name === 'wsrSra.limit' ? 'UCL' : 'LCL')]}
             />
-            <ReferenceLine y={limit} stroke="#f43f5e" strokeDasharray="3 3" label={{ value: 'UCL', fill: '#f43f5e', fontSize: 8, position: 'insideTopRight' }} />
-            <ReferenceLine y={-limit} stroke="#f43f5e" strokeDasharray="3 3" label={{ value: 'LCL', fill: '#f43f5e', fontSize: 8, position: 'insideBottomRight' }} />
             <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" />
+            
+            {/* Dynamic Control Limits (Step) */}
+            <Line type="step" dataKey="wsrSra.limit" stroke="#f43f5e" strokeDasharray="3 3" dot={false} strokeWidth={1} isAnimationActive={false} />
+            <Line type="step" dataKey={(d) => -d.wsrSra.limit} name="LCL" stroke="#f43f5e" strokeDasharray="3 3" dot={false} strokeWidth={1} isAnimationActive={false} />
+            
+            {/* Main Z-Score Line */}
             <Line type="monotone" dataKey={`wsrSra.${dataKey}`} stroke={color} strokeWidth={1.5} dot={false} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>

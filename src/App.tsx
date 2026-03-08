@@ -97,7 +97,7 @@ export default function App() {
       <div className="col-span-3 row-span-11 grid grid-rows-12 gap-4">
         {/* Real-time Control Limits */}
         <DashboardPanel title="Real-time Control Limits" className="row-span-3">
-          <ControlLimitsPanel />
+          <ControlLimitsPanel data={data} />
         </DashboardPanel>
 
         {/* Recommended Instructions */}

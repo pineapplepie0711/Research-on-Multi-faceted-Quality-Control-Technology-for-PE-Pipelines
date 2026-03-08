@@ -73,6 +73,7 @@ export const usePipelineData = () => {
     historyH_WSR: [] as number[], // Renamed to avoid conflict with historyH
     historyU: [] as number[],
     prevZ_WSR: { d: 0, h: 0, u: 0 },
+    sraSegment: { id: 0, adjustment: 1.0 }, // SRA Segment state
 
     // MTCN-DQN-Transformer State
     transformerState: { d: TARGETS.d, h: TARGETS.h, u: TARGETS.u }, // Simple EMA for global trend
@@ -153,6 +154,26 @@ export const usePipelineData = () => {
       const UCL = H0 * dynamicFactor;
 
       // --- WSR-SRA-AEWMA Logic ---
+      
+      // Safety check for HMR/Hot Reloading: Ensure sraSegment exists
+      if (!state.sraSegment) {
+        state.sraSegment = { id: 0, adjustment: 1.0 };
+      }
+
+      // Simulate SRA (Segmented Regression Analysis) Segment Change
+      // The control limit adjusts based on the detected segment's characteristics (e.g., noise level)
+      if (timeIndex % 30 === 0 && timeIndex > 0) {
+         state.sraSegment.id++;
+         // Simulate varying limit width based on segment stability
+         // In a real SRA, this would be derived from the residual variance of the current segment
+         state.sraSegment.adjustment = 0.8 + Math.random() * 0.5; // 0.8 to 1.3
+      }
+      
+      // Smooth transition for the limit (optional, but looks better)
+      // We'll just use the step change for now to make "segmentation" obvious, 
+      // or maybe add a small jitter to look "alive"
+      const currentSraAdjustment = state.sraSegment.adjustment + (Math.random() * 0.05 - 0.025);
+      const dynamicWSRLimit = WSR_LIMIT * currentSraAdjustment;
 
       const calculateWSR = (currentVal: number, target: number, history: number[], lastZVal: number) => {
         const deviation = currentVal - target;
@@ -246,6 +267,7 @@ export const usePipelineData = () => {
         historyH_WSR: wsrH.newHistory,
         historyU: wsrU.newHistory,
         prevZ_WSR: { d: wsrD.Z, h: wsrH.Z, u: wsrU.Z },
+        sraSegment: state.sraSegment, // Persist SRA segment state
         // MTCN-DQN-Transformer
         transformerState: transformer,
         recentVolatility: { d: volD.hist, h: volH.hist, u: volU.hist },
@@ -267,7 +289,7 @@ export const usePipelineData = () => {
           z_d: Number(wsrD.Z.toFixed(4)),
           z_h: Number(wsrH.Z.toFixed(4)),
           z_u: Number(wsrU.Z.toFixed(4)),
-          limit: Number(WSR_LIMIT.toFixed(4)),
+          limit: Number(dynamicWSRLimit.toFixed(4)),
         },
 
         // MTCN-DQN-Transformer
