@@ -1,0 +1,5 @@
+{
+  "name": "Gas PE Pipeline Quality Control Platform",
+  "description": "A multivariate quality control platform for gas PE pipelines featuring real-time monitoring, PP-AMFEWMA & WSR-SRA-AEWMA control charts, and MTCN-DQN-Transformer predictions.",
+  "requestFramePermissions": []
+}
