@@ -34,7 +34,7 @@ export const SystemStatus: React.FC = () => {
         </div>
       </div>
       
-      <div className="flex-1 bg-black/20 rounded p-2 overflow-hidden font-mono text-[10px]">
+      <div className="flex-1 bg-black/20 rounded p-2 overflow-y-auto custom-scrollbar font-mono text-[10px]">
         {logs.map((log, i) => (
           <div key={i} className="mb-1 flex gap-2">
             <span className="text-slate-500">[{log.time}]</span>

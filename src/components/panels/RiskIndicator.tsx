@@ -127,7 +127,7 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
         <div className="text-center">V4</div>
       </div>
 
-      <div className="text-[10px] uppercase tracking-widest opacity-80 font-semibold text-center leading-tight mt-0">
+      <div className="text-[8px] uppercase opacity-80 font-semibold text-center leading-tight mt-0">
         VW-GCM 评估
       </div>
     </div>

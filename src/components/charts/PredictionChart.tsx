@@ -11,7 +11,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
   const [selectedMetric, setSelectedMetric] = useState<MetricType>('d');
 
   const metricLabels = {
-    d: '直径',
+    d: '外径',
     h: '壁厚',
     u: '不圆度'
   };
@@ -23,7 +23,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-2 relative">
+    <div className="w-full h-full flex flex-col relative">
       {/* Controls */}
       <div className="absolute top-0 right-0 z-20 flex gap-1">
         {(['d', 'h', 'u'] as MetricType[]).map((m) => (
@@ -41,8 +41,9 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
         ))}
       </div>
 
-      {/* Top Chart: Fusion Visualization */}
-      <div className="flex-1 min-h-0 relative">
+      <div className="flex-1 min-h-0 flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-1">
+        {/* Top Chart: Fusion Visualization */}
+      <div className="flex-1 min-h-[120px] relative shrink-0">
         <div className="absolute top-0 left-0 text-[10px] text-slate-400 font-mono z-10">
           融合过程 ({metricLabels[selectedMetric]})
         </div>
@@ -102,7 +103,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
       </div>
 
       {/* Bottom Chart: DQN Weight Lambda */}
-      <div className="h-1/3 min-h-0 relative border-t border-slate-800 pt-1">
+      <div className="h-[100px] relative border-t border-slate-800 pt-1 shrink-0">
         <div className="absolute top-1 left-0 text-[10px] text-slate-400 font-mono z-10">
           DQN 权重 λ ({metricLabels[selectedMetric]})
         </div>
@@ -126,6 +127,7 @@ export const PredictionChart: React.FC<PredictionChartProps> = ({ data }) => {
             />
           </AreaChart>
         </ResponsiveContainer>
+      </div>
       </div>
     </div>
   );

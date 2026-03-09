@@ -10,7 +10,7 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
   const limit = data.length > 0 ? data[data.length - 1].wsrSra.limit : 0.6; // Default fallback
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col border-b border-cyan-500/10 last:border-0 pb-1 mb-1 relative">
+    <div className="flex-1 min-h-[100px] flex flex-col border-b border-cyan-500/10 last:border-0 pb-1 mb-1 relative shrink-0">
       <div className="flex justify-between items-center mb-0.5">
         <span className="text-[10px] text-cyan-400/70 uppercase tracking-wider">{title}</span>
         <span className="text-[10px] font-mono font-bold" style={{ color }}>
@@ -47,7 +47,7 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
 
 export const UnivariateControlCharts: React.FC<UnivariateControlChartsProps> = ({ data }) => {
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col overflow-y-auto custom-scrollbar pr-1">
       <MiniChart data={data} dataKey="z_d" color="#06b6d4" title="WSR-SRA-AEWMA (d)" />
       <MiniChart data={data} dataKey="z_h" color="#10b981" title="WSR-SRA-AEWMA (h)" />
       <MiniChart data={data} dataKey="z_u" color="#f43f5e" title="WSR-SRA-AEWMA (u)" />

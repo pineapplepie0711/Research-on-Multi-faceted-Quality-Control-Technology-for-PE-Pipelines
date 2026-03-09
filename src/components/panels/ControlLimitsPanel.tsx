@@ -17,8 +17,8 @@ export const ControlLimitsPanel: React.FC<ControlLimitsPanelProps> = ({ data }) 
   const riskLevel = latest ? latest.riskLevel : 'Low';
 
   return (
-    <div className="h-full flex flex-col justify-between text-xs">
-      <div className="space-y-2">
+    <div className="h-full flex flex-col justify-between text-xs overflow-y-auto custom-scrollbar pr-1">
+      <div className="space-y-2 shrink-0">
         <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
           <span className="text-cyan-400">PP-AMFEWMA 限值</span>
           <span className="font-mono text-emerald-400">{ppLimit}</span>

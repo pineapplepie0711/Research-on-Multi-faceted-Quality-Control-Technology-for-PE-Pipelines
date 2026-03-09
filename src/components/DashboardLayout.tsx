@@ -24,12 +24,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, clas
 
 export const DashboardPanel: React.FC<{ children: React.ReactNode; title?: string; className?: string }> = ({ children, title, className }) => {
   return (
-    <div className={cn("bg-slate-900/80 border border-cyan-500/30 rounded-lg p-3 relative overflow-hidden backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.1)]", className)}>
+    <div className={cn("bg-slate-900/80 border border-cyan-500/30 rounded-lg p-2 relative overflow-hidden backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.1)] flex flex-col", className)}>
       {title && (
-        <div className="flex items-center justify-between mb-1 border-b border-cyan-500/20 pb-1">
-          <h3 className="text-cyan-400 font-semibold uppercase tracking-wider text-xs flex items-center gap-2 truncate" title={title}>
+        <div className="flex items-center justify-between mb-1 border-b border-cyan-500/20 pb-1 shrink-0">
+          <h3 className="text-cyan-400 font-semibold uppercase text-[10px] lg:text-xs flex items-center gap-1.5" title={title}>
             <span className="w-1 h-3 bg-cyan-500 rounded-sm inline-block flex-shrink-0"></span>
-            <span className="truncate">{title}</span>
+            <span className="leading-none">{title}</span>
           </h3>
           <div className="flex gap-1 flex-shrink-0">
             <span className="w-1 h-1 bg-cyan-500/50 rounded-full"></span>
@@ -38,7 +38,7 @@ export const DashboardPanel: React.FC<{ children: React.ReactNode; title?: strin
           </div>
         </div>
       )}
-      <div className="h-full w-full relative z-10 flex flex-col min-h-0">
+      <div className="flex-1 w-full relative z-10 flex flex-col min-h-0">
         {children}
       </div>
       

@@ -34,13 +34,13 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ curren
     recommendations.push({
       type: 'warning',
       message: '增加牵引速度',
-      detail: '壁厚 (h) 过厚。10秒后，稍微增加真空以补偿直径。'
+      detail: '壁厚 (h) 过厚。10秒后，稍微增加真空以外径补偿。'
     });
   } else if (h < 9.95) {
     recommendations.push({
       type: 'warning',
       message: '降低牵引速度',
-      detail: '壁厚 (h) 过薄。10秒后，稍微降低真空以补偿直径。'
+      detail: '壁厚 (h) 过薄。10秒后，稍微降低真空以外径补偿。'
     });
   }
 

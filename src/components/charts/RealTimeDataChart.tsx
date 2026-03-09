@@ -6,7 +6,7 @@ interface RealTimeDataChartProps {
 }
 
 const SingleChart = ({ data, dataKey, color, title, target, unit, domain }: { data: any[], dataKey: string, color: string, title: string, target?: number, unit: string, domain?: any[] }) => (
-  <div className="flex-1 min-h-0 flex flex-col relative border-b border-cyan-500/10 last:border-0 pb-2 mb-2">
+  <div className="flex-1 min-h-[120px] flex flex-col relative border-b border-cyan-500/10 last:border-0 pb-2 mb-2 shrink-0">
     <div className="absolute top-0 right-2 z-10 flex items-center gap-2">
        <span className="text-[10px] text-slate-400 uppercase tracking-wider">{title}</span>
        <span className="text-xs font-mono font-bold" style={{ color }}>
@@ -35,8 +35,8 @@ const SingleChart = ({ data, dataKey, color, title, target, unit, domain }: { da
 
 export const RealTimeDataChart: React.FC<RealTimeDataChartProps> = ({ data }) => {
   return (
-    <div className="w-full h-full flex flex-col">
-      <SingleChart data={data} dataKey="d" color="#06b6d4" title="直径" target={160.5} unit="mm" domain={[(dataMin: number) => dataMin - 0.5, (dataMax: number) => dataMax + 0.5]} />
+    <div className="w-full h-full flex flex-col overflow-y-auto custom-scrollbar pr-1">
+      <SingleChart data={data} dataKey="d" color="#06b6d4" title="外径" target={160.5} unit="mm" domain={[(dataMin: number) => dataMin - 0.5, (dataMax: number) => dataMax + 0.5]} />
       <SingleChart data={data} dataKey="h" color="#10b981" title="壁厚" target={9.8} unit="mm" domain={[(dataMin: number) => dataMin - 0.1, (dataMax: number) => dataMax + 0.1]} />
       <SingleChart data={data} dataKey="u" color="#f43f5e" title="不圆度" unit="mm" domain={[0, 'auto']} />
     </div>

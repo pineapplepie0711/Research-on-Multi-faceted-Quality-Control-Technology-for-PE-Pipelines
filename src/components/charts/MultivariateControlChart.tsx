@@ -29,9 +29,9 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
   });
 
   return (
-    <div className="w-full h-full flex flex-col gap-2">
+    <div className="w-full h-full flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-1">
       {/* Figure 7: Main Trend */}
-      <div className="flex-[2] min-h-0 relative border-b border-cyan-500/20 pb-1">
+      <div className="flex-[2] min-h-[120px] relative border-b border-cyan-500/20 pb-1 shrink-0">
         <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">趋势</div>
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
@@ -51,7 +51,7 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
         </ResponsiveContainer>
       </div>
 
-      <div className="flex-1 min-h-0 flex gap-2">
+      <div className="flex-1 min-h-[80px] flex gap-2 shrink-0">
         {/* Figure 8: Distribution */}
         <div className="flex-1 min-h-0 relative border-r border-cyan-500/20 pr-1">
            <div className="absolute top-0 left-0 text-[8px] text-cyan-400/50 z-10">分布</div>

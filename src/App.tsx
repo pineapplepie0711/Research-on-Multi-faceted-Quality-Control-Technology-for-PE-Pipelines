@@ -70,19 +70,19 @@ export default function App() {
              <RiskIndicator dataPoint={currentDataPoint ? { d: currentDataPoint.d, h: currentDataPoint.h, u: currentDataPoint.u } : undefined} />
           </DashboardPanel>
           <DashboardPanel title="生产数量" className="col-span-1 flex flex-col items-center justify-center">
-             <div className="text-2xl lg:text-3xl font-mono text-cyan-400 font-bold">1,284</div>
-             <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">管道产量</div>
+             <div className="text-lg lg:text-xl font-mono text-cyan-400 font-bold">1,284</div>
+             <div className="text-[8px] lg:text-[10px] text-slate-400 uppercase tracking-wider mt-1">管道产量</div>
           </DashboardPanel>
           <DashboardPanel title="运行时间" className="col-span-1 flex flex-col items-center justify-center">
-             <div className="text-2xl lg:text-3xl font-mono text-blue-400 font-bold">48h</div>
-             <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">连续运行</div>
+             <div className="text-lg lg:text-xl font-mono text-blue-400 font-bold">48h</div>
+             <div className="text-[8px] lg:text-[10px] text-slate-400 uppercase tracking-wider mt-1">连续运行</div>
           </DashboardPanel>
         </div>
 
         {/* Main Real-time Data Chart */}
         <DashboardPanel title="实时数据采集 (d, h, u)" className="row-span-10 relative">
           <div className="absolute top-4 right-4 flex gap-4 text-xs z-20">
-             <div className="flex items-center gap-1"><span className="w-3 h-1 bg-cyan-500"></span> 直径</div>
+             <div className="flex items-center gap-1"><span className="w-3 h-1 bg-cyan-500"></span> 外径</div>
              <div className="flex items-center gap-1"><span className="w-3 h-1 bg-emerald-500"></span> 壁厚</div>
              <div className="flex items-center gap-1"><span className="w-3 h-1 bg-rose-500"></span> 不圆度</div>
           </div>
