@@ -88,47 +88,47 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ dataPoint }) => {
   else if (v2 === maxVal) { finalRisk = '警告'; colorClass = 'text-yellow-400'; }
 
   return (
-    <div className={cn("flex flex-col items-center justify-center p-1 w-full h-full")}>
-      <div className={`text-xl font-bold tracking-tighter mb-1 ${colorClass}`}>
-        {finalRisk.toUpperCase()}
-      </div>
-      
-      <div className="w-full grid grid-cols-4 gap-1 h-10 items-end mb-1 px-2">
-        <div className="flex flex-col items-center gap-1 h-full justify-end">
-           <div className="w-full bg-emerald-500/20 relative rounded-sm overflow-hidden flex items-end h-full">
-              <div className="w-full bg-emerald-500 transition-all duration-500" style={{ height: `${v1 * 100}%` }}></div>
-           </div>
-           <span className="text-[8px] text-emerald-400 font-mono">{(v1 * 100).toFixed(0)}%</span>
+    <div className={cn("flex items-center justify-between p-2 w-full h-full gap-2")}>
+      {/* Left side: V1-V4 horizontal bars */}
+      <div className="flex flex-col gap-1.5 w-[55%]">
+        <div className="flex items-center gap-2 text-[9px] font-mono">
+          <span className="text-slate-400 w-3">V1</span>
+          <div className="flex-1 h-1.5 bg-emerald-500/20 rounded-full overflow-hidden">
+            <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${v1 * 100}%` }}></div>
+          </div>
+          <span className="text-emerald-400 w-6 text-right">{(v1 * 100).toFixed(0)}%</span>
         </div>
-        <div className="flex flex-col items-center gap-1 h-full justify-end">
-           <div className="w-full bg-yellow-500/20 relative rounded-sm overflow-hidden flex items-end h-full">
-              <div className="w-full bg-yellow-500 transition-all duration-500" style={{ height: `${v2 * 100}%` }}></div>
-           </div>
-           <span className="text-[8px] text-yellow-400 font-mono">{(v2 * 100).toFixed(0)}%</span>
+        <div className="flex items-center gap-2 text-[9px] font-mono">
+          <span className="text-slate-400 w-3">V2</span>
+          <div className="flex-1 h-1.5 bg-yellow-500/20 rounded-full overflow-hidden">
+            <div className="h-full bg-yellow-500 transition-all duration-500" style={{ width: `${v2 * 100}%` }}></div>
+          </div>
+          <span className="text-yellow-400 w-6 text-right">{(v2 * 100).toFixed(0)}%</span>
         </div>
-        <div className="flex flex-col items-center gap-1 h-full justify-end">
-           <div className="w-full bg-orange-500/20 relative rounded-sm overflow-hidden flex items-end h-full">
-              <div className="w-full bg-orange-500 transition-all duration-500" style={{ height: `${v3 * 100}%` }}></div>
-           </div>
-           <span className="text-[8px] text-orange-400 font-mono">{(v3 * 100).toFixed(0)}%</span>
+        <div className="flex items-center gap-2 text-[9px] font-mono">
+          <span className="text-slate-400 w-3">V3</span>
+          <div className="flex-1 h-1.5 bg-orange-500/20 rounded-full overflow-hidden">
+            <div className="h-full bg-orange-500 transition-all duration-500" style={{ width: `${v3 * 100}%` }}></div>
+          </div>
+          <span className="text-orange-400 w-6 text-right">{(v3 * 100).toFixed(0)}%</span>
         </div>
-        <div className="flex flex-col items-center gap-1 h-full justify-end">
-           <div className="w-full bg-red-600/20 relative rounded-sm overflow-hidden flex items-end h-full">
-              <div className="w-full bg-red-600 transition-all duration-500" style={{ height: `${v4 * 100}%` }}></div>
-           </div>
-           <span className="text-[8px] text-red-500 font-mono">{(v4 * 100).toFixed(0)}%</span>
+        <div className="flex items-center gap-2 text-[9px] font-mono">
+          <span className="text-slate-400 w-3">V4</span>
+          <div className="flex-1 h-1.5 bg-red-600/20 rounded-full overflow-hidden">
+            <div className="h-full bg-red-600 transition-all duration-500" style={{ width: `${v4 * 100}%` }}></div>
+          </div>
+          <span className="text-red-500 w-6 text-right">{(v4 * 100).toFixed(0)}%</span>
         </div>
-      </div>
-
-      <div className="w-full grid grid-cols-4 gap-1 text-[8px] font-mono text-slate-400 mb-0 px-2">
-        <div className="text-center">V1</div>
-        <div className="text-center">V2</div>
-        <div className="text-center">V3</div>
-        <div className="text-center">V4</div>
       </div>
 
-      <div className="text-[8px] uppercase opacity-80 font-semibold text-center leading-tight mt-0">
-        VW-GCM 评估
+      {/* Right side: Final Risk */}
+      <div className="flex flex-col items-center justify-center w-[45%]">
+        <div className={`text-2xl lg:text-3xl font-bold tracking-tighter ${colorClass}`}>
+          {finalRisk.toUpperCase()}
+        </div>
+        <div className="text-[8px] uppercase opacity-80 font-semibold text-center leading-tight mt-1 text-slate-400">
+          VW-GCM 评估
+        </div>
       </div>
     </div>
   );

@@ -66,16 +66,20 @@ export default function App() {
       <div className="col-span-6 row-span-11 grid grid-rows-12 gap-4">
         {/* Top Indicators */}
         <div className="row-span-2 grid grid-cols-3 gap-4">
-          <DashboardPanel title="VW-GCM" className="col-span-1 flex items-center justify-center bg-slate-900/90 p-1">
+          <DashboardPanel title="VW-GCM" className="col-span-1 bg-slate-900/90 p-1">
              <RiskIndicator dataPoint={currentDataPoint ? { d: currentDataPoint.d, h: currentDataPoint.h, u: currentDataPoint.u } : undefined} />
           </DashboardPanel>
-          <DashboardPanel title="生产数量" className="col-span-1 flex flex-col items-center justify-center">
-             <div className="text-lg lg:text-xl font-mono text-cyan-400 font-bold">1,284</div>
-             <div className="text-[8px] lg:text-[10px] text-slate-400 uppercase tracking-wider mt-1">管道产量</div>
+          <DashboardPanel title="生产数量" className="col-span-1">
+             <div className="flex-1 flex flex-col items-center justify-center w-full h-full">
+               <div className="text-2xl lg:text-3xl font-mono text-cyan-400 font-bold">1,284</div>
+               <div className="text-[10px] lg:text-xs text-slate-400 uppercase tracking-wider mt-1">管道产量</div>
+             </div>
           </DashboardPanel>
-          <DashboardPanel title="运行时间" className="col-span-1 flex flex-col items-center justify-center">
-             <div className="text-lg lg:text-xl font-mono text-blue-400 font-bold">48h</div>
-             <div className="text-[8px] lg:text-[10px] text-slate-400 uppercase tracking-wider mt-1">连续运行</div>
+          <DashboardPanel title="运行时间" className="col-span-1">
+             <div className="flex-1 flex flex-col items-center justify-center w-full h-full">
+               <div className="text-2xl lg:text-3xl font-mono text-blue-400 font-bold">48h</div>
+               <div className="text-[10px] lg:text-xs text-slate-400 uppercase tracking-wider mt-1">连续运行</div>
+             </div>
           </DashboardPanel>
         </div>
 
