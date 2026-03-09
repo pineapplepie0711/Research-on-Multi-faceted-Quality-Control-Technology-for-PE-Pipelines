@@ -9,6 +9,23 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
   const currentVal = data.length > 0 ? data[data.length - 1].wsrSra[dataKey] : 0;
   const limit = data.length > 0 ? data[data.length - 1].wsrSra.limit : 0.6; // Default fallback
 
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const upperLimit = payload.find((p: any) => p.dataKey === 'wsrSra.limit')?.value;
+      const zScore = payload.find((p: any) => p.dataKey === `wsrSra.${dataKey}`)?.value;
+      const lowerLimit = payload.find((p: any) => p.name === '控制下限')?.value ?? (upperLimit !== undefined ? -upperLimit : undefined);
+
+      return (
+        <div className="bg-[#0f172a] p-2 text-[10px] text-[#cbd5e1] shadow-lg flex flex-col gap-2" style={{ border: `1px solid ${color}` }}>
+          <div>控制上限 : {upperLimit !== undefined ? Number(upperLimit).toFixed(4) : '-'}</div>
+          <div>Z-分数 : {zScore !== undefined ? Number(zScore).toFixed(3) : '-'}</div>
+          <div>控制下限 : {lowerLimit !== undefined ? Number(lowerLimit).toFixed(4) : '-'}</div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="flex-1 min-h-[100px] flex flex-col border-b border-cyan-500/10 last:border-0 pb-1 mb-1 relative shrink-0">
       <div className="flex justify-between items-center mb-0.5">
@@ -24,12 +41,7 @@ const MiniChart = ({ data, dataKey, color, title }: { data: any[], dataKey: stri
             <XAxis dataKey="time" hide />
             {/* Symmetric domain around 0 based on limit */}
             <YAxis hide domain={['dataMin', 'dataMax']} />
-            <Tooltip 
-              contentStyle={{ backgroundColor: '#0f172a', borderColor: color, color: '#cbd5e1', fontSize: '10px', padding: '4px' }}
-              itemStyle={{ color: '#cbd5e1' }}
-              labelStyle={{ display: 'none' }}
-              formatter={(value: any, name: string) => [value, name === `wsrSra.${dataKey}` ? 'Z-分数' : (name === 'wsrSra.limit' ? '控制上限' : '控制下限')]}
-            />
+            <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#475569', strokeWidth: 1, strokeDasharray: '3 3' }} />
             <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" />
             
             {/* Dynamic Control Limits (Step) */}

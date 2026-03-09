@@ -12,7 +12,8 @@ export const ControlLimitsPanel: React.FC<ControlLimitsPanelProps> = ({ data }) 
   const ppLimit = latest ? latest.ucl.toFixed(2) : '5.00';
   
   // WSR Limit is the same for all in this implementation (nonparametric)
-  const wsrLimit = latest ? latest.wsrSra.limit.toFixed(2) : '0.60';
+  const wsrLimit = latest ? latest.wsrSra.limit.toFixed(4) : '0.6792';
+  const wsrLowerLimit = latest ? (-latest.wsrSra.limit).toFixed(4) : '-0.6792';
 
   const riskLevel = latest ? latest.riskLevel : 'Low';
 
@@ -24,16 +25,28 @@ export const ControlLimitsPanel: React.FC<ControlLimitsPanelProps> = ({ data }) 
           <span className="font-mono text-emerald-400">{ppLimit}</span>
         </div>
         <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
-          <span className="text-cyan-400">WSR-SRA 限值 (d)</span>
+          <span className="text-cyan-400">WSR-SRA 上限 (d)</span>
           <span className="font-mono text-emerald-400">{wsrLimit}</span>
         </div>
         <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
-          <span className="text-cyan-400">WSR-SRA 限值 (h)</span>
+          <span className="text-cyan-400">WSR-SRA 下限 (d)</span>
+          <span className="font-mono text-emerald-400">{wsrLowerLimit}</span>
+        </div>
+        <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
+          <span className="text-cyan-400">WSR-SRA 上限 (h)</span>
           <span className="font-mono text-emerald-400">{wsrLimit}</span>
         </div>
         <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
-          <span className="text-cyan-400">WSR-SRA 限值 (u)</span>
+          <span className="text-cyan-400">WSR-SRA 下限 (h)</span>
+          <span className="font-mono text-emerald-400">{wsrLowerLimit}</span>
+        </div>
+        <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
+          <span className="text-cyan-400">WSR-SRA 上限 (u)</span>
           <span className="font-mono text-emerald-400">{wsrLimit}</span>
+        </div>
+        <div className="flex justify-between items-center border-b border-cyan-500/20 pb-1">
+          <span className="text-cyan-400">WSR-SRA 下限 (u)</span>
+          <span className="font-mono text-emerald-400">{wsrLowerLimit}</span>
         </div>
       </div>
       
