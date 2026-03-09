@@ -10,9 +10,9 @@ export const MultivariateControlChart: React.FC<MultivariateControlChartProps> =
   
   // Calculate contributions for the last point
   const contributions = lastPoint ? [
-    { name: 'd', value: Math.abs(lastPoint.d - 160.5) },
-    { name: 'h', value: Math.abs(lastPoint.h - 9.8) * 5 },
-    { name: 'u', value: lastPoint.u * 10 }
+    { name: 'd', value: Math.abs(lastPoint.d - 160.38175) * 10 },
+    { name: 'h', value: Math.abs(lastPoint.h - 9.95013) * 10 },
+    { name: 'u', value: Math.abs(lastPoint.u - 0.30618) * 100 }
   ] : [];
 
   // Calculate histogram

@@ -33,8 +33,16 @@ export interface PipelineData {
   }[]; // Future predictions (General)
 }
 
-const TARGETS = { d: 160.5, h: 9.8, u: 0 };
-const SIGMA = { d: 0.5, h: 0.1, u: 0.05 };
+const TARGETS = { d: 160.38175, h: 9.95013, u: 0.30618 };
+const SIGMA = { d: 0.06193, h: 0.05048, u: 0.00154 };
+
+// Helper for normal distribution
+function randn_bm() {
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random();
+  while(v === 0) v = Math.random();
+  return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+}
 
 // PP-AMFEWMA Constants
 const LAMBDA = 0.2; // Base smoothing
@@ -86,15 +94,15 @@ export const usePipelineData = () => {
       const { timeIndex } = state;
       
       // 1. Generate Raw Data (X_n)
-      // Simulate some process drift and noise
-      const noiseD = (Math.random() - 0.5) * 0.8;
-      const noiseH = (Math.random() - 0.5) * 0.2;
-      const noiseU = Math.random() * 0.1;
+      // Simulate some process drift and noise using normal distribution
+      const noiseD = randn_bm() * SIGMA.d;
+      const noiseH = randn_bm() * SIGMA.h;
+      const noiseU = randn_bm() * SIGMA.u;
       
       // Add occasional drift/anomaly
-      const drift = timeIndex > 50 && timeIndex < 80 ? (timeIndex - 50) * 0.05 : 0;
+      const drift = timeIndex > 50 && timeIndex < 80 ? (timeIndex - 50) * (SIGMA.h * 0.1) : 0;
       
-      const rawD = TARGETS.d + noiseD + (timeIndex > 100 ? 0.5 : 0); // Step shift at t=100
+      const rawD = TARGETS.d + noiseD + (timeIndex > 100 ? SIGMA.d * 3 : 0); // 3-sigma step shift at t=100
       const rawH = TARGETS.h + noiseH + drift;
       const rawU = TARGETS.u + noiseU;
 
@@ -275,9 +283,9 @@ export const usePipelineData = () => {
 
       const newDataPoint: PipelineData = {
         time: new Date().toLocaleTimeString(),
-        d: Number(rawD.toFixed(2)),
-        h: Number(rawH.toFixed(2)),
-        u: Number(rawU.toFixed(2)),
+        d: Number(rawD.toFixed(4)),
+        h: Number(rawH.toFixed(4)),
+        u: Number(rawU.toFixed(5)),
         riskLevel: risk,
         
         // PP-AMFEWMA
@@ -288,20 +296,20 @@ export const usePipelineData = () => {
         wsrSra: {
           z_d: Number(wsrD.Z.toFixed(4)),
           z_h: Number(wsrH.Z.toFixed(4)),
-          z_u: Number(wsrU.Z.toFixed(4)),
+          z_u: Number(wsrU.Z.toFixed(5)),
           limit: Number(dynamicWSRLimit.toFixed(4)),
         },
 
         // MTCN-DQN-Transformer
         mtcn: {
-          d: Number(mtcn.d.toFixed(2)),
-          h: Number(mtcn.h.toFixed(2)),
-          u: Number(mtcn.u.toFixed(2)),
+          d: Number(mtcn.d.toFixed(4)),
+          h: Number(mtcn.h.toFixed(4)),
+          u: Number(mtcn.u.toFixed(5)),
         },
         transformer: {
-          d: Number(transformer.d.toFixed(2)),
-          h: Number(transformer.h.toFixed(2)),
-          u: Number(transformer.u.toFixed(2)),
+          d: Number(transformer.d.toFixed(4)),
+          h: Number(transformer.h.toFixed(4)),
+          u: Number(transformer.u.toFixed(5)),
         },
         dqnWeights: {
           d: Number(dqnWeights.d.toFixed(2)),
@@ -309,9 +317,9 @@ export const usePipelineData = () => {
           u: Number(dqnWeights.u.toFixed(2)),
         },
         fusedPrediction: {
-          d: Number(fusedPrediction.d.toFixed(2)),
-          h: Number(fusedPrediction.h.toFixed(2)),
-          u: Number(fusedPrediction.u.toFixed(2)),
+          d: Number(fusedPrediction.d.toFixed(4)),
+          h: Number(fusedPrediction.h.toFixed(4)),
+          u: Number(fusedPrediction.u.toFixed(5)),
         },
 
         prediction: [

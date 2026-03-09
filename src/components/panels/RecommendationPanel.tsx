@@ -15,14 +15,14 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ curren
   const { d, h, u } = currentData;
   const recommendations: { type: 'warning' | 'success' | 'info', message: string, detail: string }[] = [];
 
-  // Logic based on Image 2
-  if (d > 110.2) {
+  // Logic based on new parameters
+  if (d > 160.5) {
     recommendations.push({
       type: 'warning',
       message: '降低真空/负压',
       detail: '外径 (d) 过大。优先进行单变量调整。'
     });
-  } else if (d < 109.8) {
+  } else if (d < 160.2) {
     recommendations.push({
       type: 'warning',
       message: '增加真空/负压',
@@ -36,7 +36,7 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ curren
       message: '增加牵引速度',
       detail: '壁厚 (h) 过厚。10秒后，稍微增加真空以外径补偿。'
     });
-  } else if (h < 9.95) {
+  } else if (h < 9.85) {
     recommendations.push({
       type: 'warning',
       message: '降低牵引速度',
@@ -44,7 +44,7 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({ curren
     });
   }
 
-  if (u > 0.3) {
+  if (u > 0.31) {
     recommendations.push({
       type: 'warning',
       message: '检查真空稳定性',

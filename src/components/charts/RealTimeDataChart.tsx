@@ -36,9 +36,9 @@ const SingleChart = ({ data, dataKey, color, title, target, unit, domain }: { da
 export const RealTimeDataChart: React.FC<RealTimeDataChartProps> = ({ data }) => {
   return (
     <div className="w-full h-full flex flex-col overflow-y-auto custom-scrollbar pr-1">
-      <SingleChart data={data} dataKey="d" color="#06b6d4" title="外径" target={160.5} unit="mm" domain={[(dataMin: number) => dataMin - 0.5, (dataMax: number) => dataMax + 0.5]} />
-      <SingleChart data={data} dataKey="h" color="#10b981" title="壁厚" target={9.8} unit="mm" domain={[(dataMin: number) => dataMin - 0.1, (dataMax: number) => dataMax + 0.1]} />
-      <SingleChart data={data} dataKey="u" color="#f43f5e" title="不圆度" unit="mm" domain={[0, 'auto']} />
+      <SingleChart data={data} dataKey="d" color="#06b6d4" title="外径" target={160.38175} unit="mm" domain={[(dataMin: number) => dataMin - 0.1, (dataMax: number) => dataMax + 0.1]} />
+      <SingleChart data={data} dataKey="h" color="#10b981" title="壁厚" target={9.95013} unit="mm" domain={[(dataMin: number) => dataMin - 0.1, (dataMax: number) => dataMax + 0.1]} />
+      <SingleChart data={data} dataKey="u" color="#f43f5e" title="不圆度" target={0.30618} unit="mm" domain={[(dataMin: number) => dataMin - 0.005, (dataMax: number) => dataMax + 0.005]} />
     </div>
   );
 };
