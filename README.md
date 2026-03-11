@@ -1,20 +1,9 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# PE管挤出过程多维质量控制技术研究
 
-# Run and deploy your AI Studio app
+## 项目简介
+本项目致力于研究 PE 管材挤出过程中的多指标（外径、壁厚、不圆度等）质量控制，采用非参数控制图等算法实现实时监控。
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/d6b2aa42-b4e6-465e-b251-da44f7c01381
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 技术栈
+* TypeScript / Vite (前端展示)
+* Python / TensorFlow / PyTorch (模型算法)
+* 挤出工艺数据分析
